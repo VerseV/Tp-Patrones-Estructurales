@@ -54,8 +54,8 @@ public class Main {
         alertaSMS.enviar("Sismo cercano, se espera un ligero temblor");
         promoEmail.enviar("Cyberweek, descuentos del 15%, 30% y más...");
         promoSMS.enviar("Cupon para que vuelvas a pedir en Mercados");
-        recEmail.enviar(" ");
-        recSMS.enviar(" ");
+        recEmail.enviar("Todavia no recibimos el pago de tu suscripción ");
+        recSMS.enviar("Tu turno médico es en una semana");
 
     }
 
