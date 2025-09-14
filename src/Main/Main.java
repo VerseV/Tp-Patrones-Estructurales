@@ -1,17 +1,28 @@
 package Main;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import Main.Java.Adapter.Impresora;
+import Main.Java.Adapter.ImpresoraPDF;
+import Main.Java.Adapter.ImpresoraTexto;
+import Main.Java.Adapter.ImpresoraTextoAdapter;
+import Main.Java.Adapter.ImpresoraPDFAdapter;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // ==============================
+        // EJERCICIO 1- Adapter
+        // ==============================
+        System.out.println("\n=== EJERCICIO 1: Adapter ===");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Texto
+        ImpresoraTexto impTexto = new ImpresoraTexto();
+        Impresora impresoraTextoAdapter = new ImpresoraTextoAdapter(impTexto);
+
+        // PDF
+        ImpresoraPDF impPdf = new ImpresoraPDF();
+        Impresora impresoraPdf = new ImpresoraPDFAdapter(impPdf);
+
+        // Uso
+        impresoraPdf.imprimir("Informe_final.pdf (contenido simulado)");
+        impresoraTextoAdapter.imprimir("Informe_final.txt (contenido simulado)");
     }
 }
