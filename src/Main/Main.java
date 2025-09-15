@@ -6,6 +6,7 @@ import Main.Java.Adapter.ImpresoraTexto;
 import Main.Java.Adapter.ImpresoraTextoAdapter;
 import Main.Java.Adapter.ImpresoraPDFAdapter;
 import Main.Java.Bridge.*;
+import Main.Java.Decorator.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,6 +58,33 @@ public class Main {
         recEmail.enviar("Todavia no recibimos el pago de tu suscripción ");
         recSMS.enviar("Tu turno médico es en una semana");
 
+
+        // ==============================
+        // EJERCICIO 3- Decorator
+        // ==============================
+
+        System.out.println("\n=== EJERCICIO 3: Decorator ===");
+
+
+        //Plan 1: plan básico con HD y descargas
+        Plan plan1 = new PlanBasico();
+        System.out.println(plan1.descripcion() + " cuesta $" + plan1.costo());
+
+        plan1 = new HD(plan1); //Plan básico + HD
+        System.out.println(plan1.descripcion() + " cuesta $" + plan1.costo());
+
+        plan1= new DescargasOffline(plan1); //Plan Básico + HD + DescargasOffline
+        System.out.println(plan1.descripcion() + " cuesta $" + plan1.costo());
+
+    //Plan 2: plan básico con UltraHD y descargas
+        Plan plan2 = new PlanBasico();
+        System.out.println(plan2.descripcion() + " cuesta $" + plan2.costo());
+
+        plan2 = new UltraHD(plan2); //Plan básico + HD
+        System.out.println(plan2.descripcion() + " cuesta $" + plan2.costo());
+
+        plan2= new DescargasOffline(plan2); //Plan Básico + HD + DescargasOffline
+        System.out.println(plan2.descripcion() + " cuesta $" + plan2.costo());
     }
 
 }
