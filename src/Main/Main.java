@@ -7,6 +7,12 @@ import Main.Java.Adapter.ImpresoraTextoAdapter;
 import Main.Java.Adapter.ImpresoraPDFAdapter;
 import Main.Java.Bridge.*;
 import Main.Java.Decorator.*;
+import Main.Java.Facade.Carrito;
+import Main.Java.Facade.Envio;
+import Main.Java.Facade.Pago;
+import Main.Java.Facade.TiendaFacade;
+import Main.Java.Flyweight.FabricaDeArboles;
+import Main.Java.Flyweight.TipoArbol;
 
 public class Main {
     public static void main(String[] args) {
@@ -85,6 +91,42 @@ public class Main {
 
         plan2= new DescargasOffline(plan2); //Plan Básico + HD + DescargasOffline
         System.out.println(plan2.descripcion() + " cuesta $" + plan2.costo());
+
+        // ==============================
+        // EJERCICIO 4- Facade
+        // ==============================
+        System.out.println("\n=== EJERCICIO 4: Facade ===");
+        Carrito carrito = new Carrito();
+        Pago pago = new Pago();
+        Envio envio = new Envio();
+        TiendaFacade tienda = new TiendaFacade(carrito, pago, envio);
+        tienda.comprar("Camisa blanca", 2500, "Avenida Siempreviva 742");
+        // ==============================
+        // EJERCICIO 5- Flyweight
+        // ==============================
+        System.out.println("\n=== EJERCICIO 5: Flyweight ===");
+
+        FabricaDeArboles fabrica = new FabricaDeArboles();
+
+        String[] tipos = {"Pino", "Roble", "Eucalipto"};
+        String textura = "textura-hojas";
+        String color = "VerdeOscuro";
+
+        int totalArboles = 1_000_000;
+
+        for (int i = 0; i < totalArboles; i++) {
+            String tipo = tipos[i % tipos.length]; // Alternamos tipos
+            TipoArbol arbol = fabrica.obtenerTipoArbol(tipo, textura, color);
+
+            // Solo dibujamos los primeros 5 para mostrar que funciona
+            if (i < 5) {
+                arbol.dibujar(i * 10, i * 20);
+            }
+        }
+
+        System.out.println("Árboles creados en memoria (tipos únicos): " + fabrica.tiposCreados());
+        System.out.println("Árboles simulados en el mapa: " + totalArboles);
+
     }
 
 }
