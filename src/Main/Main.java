@@ -13,6 +13,8 @@ import Main.Java.Facade.Pago;
 import Main.Java.Facade.TiendaFacade;
 import Main.Java.Flyweight.FabricaDeArboles;
 import Main.Java.Flyweight.TipoArbol;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -128,5 +130,53 @@ public class Main {
         System.out.println("Árboles simulados en el mapa: " + totalArboles);
 
     }
+       // ==============================
+      // EJERCICIO 6- Proxy
+     // ============================== 
+        System.out.println("\n=== EJERCICIO 6: Proxy ===");
+    //Interfaz Archivo.java
+     public interface Archivo {
+    void abrir();}
+   //Clase Real ArchivoReal.java
+     public class ArchivoReal implements Archivo {
+    private String nombreArchivo;
+
+    public ArchivoReal(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
+
+    @Override
+    public void abrir() {
+        System.out.println("Abriendo archivo: " + nombreArchivo);
+    }
+}
+    //Proxy ArchivoProxy.java
+    public class ArchivoProxy implements Archivo {
+    private String nombreArchivo;
+    private String usuario;
+    private ArchivoReal archivoReal;
+
+    // Lista de usuarios autorizados
+    private static final List<String> USUARIOS_PERMITIDOS = Arrays.asList("admin", "nombre");
+
+    public ArchivoProxy(String nombreArchivo, String usuario) {
+        this.nombreArchivo = nombreArchivo;
+        this.usuario = usuario;
+    }
+
+    @Override
+    public void abrir() {
+        if (USUARIOS_PERMITIDOS.contains(usuario.toLowerCase())) {
+            if (archivoReal == null) {
+                archivoReal = new ArchivoReal(nombreArchivo);
+            }
+            archivoReal.abrir();
+        } else {
+            System.out.println("Acceso denegado para el usuario: " + usuario);
+        }
+    }
+}
+
+
 
 }
