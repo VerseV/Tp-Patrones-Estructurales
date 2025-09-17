@@ -1,19 +1,13 @@
 package Main;
 
-import Main.Java.Adapter.Impresora;
-import Main.Java.Adapter.ImpresoraPDF;
-import Main.Java.Adapter.ImpresoraTexto;
-import Main.Java.Adapter.ImpresoraTextoAdapter;
-import Main.Java.Adapter.ImpresoraPDFAdapter;
+import Main.Java.Adapter.*;
 import Main.Java.Bridge.*;
 import Main.Java.Decorator.*;
-import Main.Java.Facade.Carrito;
-import Main.Java.Facade.Envio;
-import Main.Java.Facade.Pago;
-import Main.Java.Facade.TiendaFacade;
+import Main.Java.Facade.*;
 import Main.Java.Flyweight.FabricaDeArboles;
 import Main.Java.Flyweight.TipoArbol;
 import Main.Java.Proxy.*;
+import Main.Java.Composite.*;
 
 
 public class Main {
@@ -141,6 +135,23 @@ public class Main {
         // Usuario sin permisos
         Archivo archivo2 = new ArchivoProxy("documento_confidencial.txt", "cliente");
         archivo2.abrir();
+
+        // ==============================
+        // EJERCICIO 7: Composite
+        // ==============================
+        System.out.println("\n=== EJERCICIO 7: Composite ===");
+
+        // Creamos platos individuales
+        Plato p1 = new Plato("Milanesa", 1200);
+        Plato p2 = new Plato("Ensalada", 900);
+
+        // Creamos un menú y agregamos platos
+        Menu menuPrincipal = new Menu("Principal");
+        menuPrincipal.agregar(p1);
+        menuPrincipal.agregar(p2);
+
+        // Mostramos el menú completo
+        menuPrincipal.mostrar("");
 
     }
 
