@@ -17,17 +17,13 @@ public class Main {
         // ==============================
         System.out.println("\n=== EJERCICIO 1: Adapter ===");
 
-        // Texto
-        ImpresoraTexto impTexto = new ImpresoraTexto();
-        Impresora impresoraTextoAdapter = new ImpresoraTextoAdapter(impTexto);
+        // Usamos PDF directo
+        ImpresoraPDF pdf = new ImpresoraPDF();
+        pdf.imprimirPDF("Informe_final.pdf");
 
-        // PDF
-        ImpresoraPDF impPdf = new ImpresoraPDF();
-        Impresora impresoraPdf = new ImpresoraPDFAdapter(impPdf);
-
-        // Uso
-        impresoraPdf.imprimir("Informe_final.pdf (contenido simulado)");
-        impresoraTextoAdapter.imprimir("Informe_final.txt (contenido simulado)");
+        // Usamos Texto con Adapter
+        ImpresoraTextoAdapter impresoraTexto = new ImpresoraTextoAdapter(new ImpresoraTexto());
+        impresoraTexto.imprimir("Informe_final.txt");
 
         // ==============================
         // EJERCICIO 2- Bridge
