@@ -1,4 +1,4 @@
-# TP1 - Patrones Estructurales en Java
+# TP2 - Patrones Estructurales en Java
 
 ## Grupo N°7
 - Victoria Acosta
